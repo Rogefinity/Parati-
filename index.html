@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    
+    <!-- TailwindCSS vía CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'love-pink': '#ffd1dc',
+                        'blush-rose': '#ffb6c1',
+                        'warm-white': '#fdfbf7',
+                        'soft-text': '#4a4a4a',
+                        'accent-red': '#ff4d6d'
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        script: ['Caveat', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- CSS Nativo para Animaciones y 3D -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .animacion-flotar {
+            animation: flotar 3s ease-in-out infinite;
+        }
+        
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Sistema 3D del Sobre */
+        .sobre-contenedor {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background: #ffb6c1;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        .sobre-contenedor::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            border-left: 160px solid #f9a8d4;
+            border-right: 160px solid #f9a8d4;
+            border-bottom: 110px solid #f9a8d4;
+            border-top: 110px solid transparent;
+            z-index: 2;
+        }
+
+        .sobre-contenedor::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-bottom: 110px solid #ffd1dc;
+            z-index: 3;
+        }
+
+        .solapa {
+            position: absolute;
+            top: 0; left: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 110px solid #f472b6;
+            transform-origin: top;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 4;
+        }
+
+        .solapa.abierta {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .carta-papel {
+            position: absolute;
+            top: 10px; left: 10px;
+            width: 300px; height: 200px;
+            background: white;
+            border-radius: 8px;
+            padding: 16px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .carta-papel.abierta {
+            transform: translateY(-140px);
+            z-index: 3;
+        }
+
+        .sello-corazon {
+            position: absolute;
+            top: 95px; left: 140px;
+            width: 40px; height: 40px;
+            background: #ff4d6d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 5;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .sello-corazon.oculto {
+            opacity: 0;
+        }
+
+        /* Transición suave para el generador de razones */
+        .fade-texto {
+            transition: opacity 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-warm-white font-sans text-soft-text antialiased selection:bg-blush-rose selection:text-white">
+
+    <!-- HERO -->
+    <header class="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden text-center bg-gradient-to-b from-love-pink/40 to-warm-white">
+        <div class="absolute top-20 left-10 w-32 h-32 bg-love-pink/60 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-20 right-10 w-40 h-40 bg-blush-rose/40 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 animacion-flotar">
+            <h1 class="text-7xl md:text-8xl font-script text-accent-red mb-4 drop-shadow-sm">Para ti...</h1>
+            <p class="text-lg md:text-xl font-medium max-w-lg mx-auto leading-relaxed text-gray-600 px-4">
+                Un rincón en el internet diseñado para ti, escrito línea por línea, solo para demostrarte mi amor.
+            </p>
+            
+            <a href="#mensaje" class="inline-block mt-12 animate-bounce text-blush-rose hover:text-accent-red transition-colors">
+                <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- MENSAJE ESPECIAL (SOBRE) -->
+    <section id="mensaje" class="py-24 px-4">
+        <h2 class="text-5xl font-script text-center text-accent-red mb-16 font-bold">Un mensaje especial</h2>
+        
+        <div class="sobre-contenedor" onclick="toggleCarta()">
+            <div id="solapa" class="solapa"></div>
+            <div id="sello" class="sello-corazon">❤️</div>
+            
+            <div id="carta" class="carta-papel">
+                <p class="text-[13px] text-gray-700 leading-tight font-medium text-justify">
+                    Hola hermosa,<br><br>
+                    Quería regalarte algo que no se pudiera encontrar en ninguna tienda. Por eso decidí escribir este espacio desde cero, escribiendo pensando en ti. Es un pequeño rincón en internet que nos pertenece solo a nosotros, un lugar para celebrar lo felices que somos.
+                    
+                    Te amo mucho.
+                </p>
+                <p class="font-script text-2xl text-accent-red text-right">Roger</p>
+            </div>
+        </div>
+        
+        <p class="text-sm text-gray-400 mt-12 italic text-center" id="instruccion">Haz clic en el sobre para abrirlo</p>
+    </section>
+
+    <!-- CONTADOR DE TIEMPO JUNTOS -->
+    <section class="py-24 px-4 bg-love-pink/20">
+        <h2 class="text-5xl font-script text-center text-accent-red mb-6 font-bold">Nuestro Tiempo Juntos</h2>
+        <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Cada segundo a tu lado es mi momento favorito.</p>
+        
+        <div class="max-w-3xl mx-auto flex flex-wrap justify-center gap-4 md:gap-8 px-4">
+            <!-- Días -->
+            <div class="bg-white px-6 py-4 rounded-2xl shadow-sm text-center w-28 md:w-32 border-2 border-white hover:border-love-pink transition-colors">
+                <span id="dias" class="block text-4xl md:text-5xl font-bold text-blush-rose">0</span>
+                <span class="text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wider mt-1 block">Días</span>
+            </div>
+            <!-- Horas -->
+            <div class="bg-white px-6 py-4 rounded-2xl shadow-sm text-center w-28 md:w-32 border-2 border-white hover:border-love-pink transition-colors">
+                <span id="horas" class="block text-4xl md:text-5xl font-bold text-blush-rose">0</span>
+                <span class="text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wider mt-1 block">Horas</span>
+            </div>
+            <!-- Minutos -->
+            <div class="bg-white px-6 py-4 rounded-2xl shadow-sm text-center w-28 md:w-32 border-2 border-white hover:border-love-pink transition-colors">
+                <span id="minutos" class="block text-4xl md:text-5xl font-bold text-blush-rose">0</span>
+                <span class="text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wider mt-1 block">Minutos</span>
+            </div>
+            <!-- Segundos -->
+            <div class="bg-white px-6 py-4 rounded-2xl shadow-sm text-center w-28 md:w-32 border-2 border-white hover:border-love-pink transition-colors">
+                <span id="segundos" class="block text-4xl md:text-5xl font-bold text-blush-rose">0</span>
+                <span class="text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wider mt-1 block">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- GENERADOR DE RAZONES -->
+    <section class="py-24 px-4 bg-warm-white">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-5xl font-script text-accent-red mb-8 font-bold">¿Tienes un mal día?</h2>
+            
+            <button onclick="generarRazon()" class="bg-blush-rose hover:bg-accent-red text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 active:scale-95 mb-10">
+                Presiona aquí ❤️
+            </button>
+            
+            <!-- Tarjeta donde aparece la razón -->
+            <div class="min-h-[160px] flex items-center justify-center bg-white p-8 rounded-3xl shadow-sm border border-love-pink/50 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 text-6xl opacity-10">❤️</div>
+                <p id="texto-razon" class="font-script text-2xl md:text-3xl text-gray-700 fade-texto opacity-100">
+                    Descubre un mensaje para cualquier momento...
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 text-center bg-love-pink/10">
+        <p class="font-sans text-sm text-gray-400 font-medium">
+            Programado con <span class="text-accent-red text-lg">❤️</span>
+        </p>
+    </footer>
+
+    <!-- SCRIPTS MÁGICOS -->
+    <script>
+        // ---------------------------------------------------------
+        // LÓGICA DE LA CARTA INTERACTIVA
+        // ---------------------------------------------------------
+        let cartaAbierta = false;
+
+        function toggleCarta() {
+            const solapa = document.getElementById('solapa');
+            const carta = document.getElementById('carta');
+            const sello = document.getElementById('sello');
+            const instruccion = document.getElementById('instruccion');
+
+            if (!cartaAbierta) {
+                solapa.classList.add('abierta');
+                sello.classList.add('oculto');
+                instruccion.innerText = "Haz clic de nuevo para guardarla";
+                setTimeout(() => { carta.classList.add('abierta'); }, 300);
+            } else {
+                carta.classList.remove('abierta');
+                instruccion.innerText = "Haz clic en el sobre para abrirlo";
+                setTimeout(() => {
+                    solapa.classList.remove('abierta');
+                    setTimeout(() => { sello.classList.remove('oculto'); }, 300);
+                }, 400);
+            }
+            cartaAbierta = !cartaAbierta;
+        }
+
+        // ---------------------------------------------------------
+        // LÓGICA DEL CONTADOR DE TIEMPO
+        // ---------------------------------------------------------
+        function actualizarContador() {
+            // Fecha configurada al 23 de mayo de 2025
+            const fechaInicio = new Date('2025-05-23T00:00:00'); 
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio;
+
+            if (diferencia > 0) {
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+                const minutos = Math.floor((diferencia / 1000 / 60) % 60);
+                const segundos = Math.floor((diferencia / 1000) % 60);
+
+                document.getElementById('dias').innerText = dias;
+                document.getElementById('horas').innerText = horas;
+                document.getElementById('minutos').innerText = minutos;
+                document.getElementById('segundos').innerText = segundos;
+            }
+        }
+
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+
+        // ---------------------------------------------------------
+        // LÓGICA DEL GENERADOR DE MENSAJES
+        // ---------------------------------------------------------
+        const frasesDeAmor = [
+            "Si tienes un mal día, recuerda que no todos los días tienen que ser buenos. Mañana será otra oportunidad. ❤️",
+            "Si estás triste, ojalá pudiera abrazarte ahora mismo. Mientras tanto, recuerda que te quiero muchísimo. 🫂",
+            "Si me extrañas, recuerda que yo probablemente también estoy pensando en ti. ❤️",
+            "Si necesitas una sonrisa, imagíname haciendo alguna tontería solo para hacerte reír. JAJAJA. ❤️",
+            "Si estás enojada conmigo, primero respira… y después recuerda que te amo aunque estés enojada conmigo. 🥹",
+            "Si estás cansada, descansa, amor. No tienes que poder con todo siempre. 🫶",
+            "Si necesitas un abrazo, cierra los ojos e imagina que estoy abrazándote muy fuerte. 🫂❤️",
+            "Si estás teniendo un día horrible, recuerda que este día no define tu vida. Va a pasar, y yo voy a seguir aquí.",
+            "Si dudas de ti, recuerda que yo creo muchísimo en ti, incluso cuando tú no puedas hacerlo.",
+            "Si necesitas recordar cuánto te amo: muchísimo, más de lo que probablemente puedo explicar con palabras. ❤️",
+            "Si no puedes dormir, imagínate acostada conmigo, abrazados, sin preocuparnos por nada. 🥰",
+            "Si necesitas motivación, recuerda que tú puedes. Ya has superado cosas difíciles antes y esta tampoco será diferente. 💪❤️",
+            "Si estás nerviosa, respira. Lo vas a hacer increíble. Confío en ti.",
+            "Si te sientes sola, recuerda que aunque no esté físicamente contigo, nunca estás sola. Siempre tienes un lugar en mi corazón. ❤️",
+            "Si quieres saber algo bonito: eres mi persona favorita. Así de simple. 🥰",
+            "Si estás feliz, me encanta imaginarte sonriendo. Ojalá pudiera estar ahí para verlo. ❤️",
+            "Si necesitas recordar lo increíble que eres: eres inteligente, bonita, fuerte y tienes un corazón enorme. Nunca lo olvides.",
+            "Si tuvimos una discusión, recuerda que podemos estar en desacuerdo y aun así seguir queriéndonos. Te amo. ❤️",
+            "Si estás pensando demasiado, suelta un poquito la mente. No todo tiene que resolverse hoy.",
+            "Si necesitas escuchar “te amo”: TE AMO. Muchísimo. ❤️❤️❤️",
+            "Si tienes miedo, recuerda que no tienes que enfrentarlo todo sola. Estoy contigo.",
+            "Si necesitas distraerte, piensa en todos los momentos random que hemos vivido y probablemente te vas a empezar a reír. JAJAJA.",
+            "Si quieres recordar nuestro comienzo, piensa en todo lo que hemos vivido desde aquel 23 de mayo de 2025. ❤️",
+            "Si necesitas sentirte especial, recuerda que de todas las personas del mundo, tú eres la que tiene mi corazón. 🫶",
+            "Si estás decepcionada de ti misma, recuerda que un error no cambia la persona increíble que eres.",
+            "Si quieres un cumplido: sigues siendo hermosa incluso cuando tú crees que no lo eres. ❤️",
+            "Si necesitas recordar que estoy orgulloso de ti, recuerda que estoy orgulloso de ti por seguir intentando, incluso cuando las cosas se ponen difíciles.",
+            "Si quieres saber qué haría si estuviera contigo: te daría un beso, te abrazaría y probablemente no te soltaría. 🥹❤️",
+            "Si quieres pensar en nuestro futuro, recuerda que todavía nos quedan muchísimos momentos por vivir, lugares por conocer y recuerdos por crear. ❤️",
+            "No importa cuándo leas esto: te amo, te extraño y me siento muy afortunado de tenerte. ❤️"
+        ];
+
+        function generarRazon() {
+            const textoRazon = document.getElementById('texto-razon');
+            
+            // Efecto de desvanecimiento
+            textoRazon.style.opacity = '0';
+            
+            setTimeout(() => {
+                const fraseAleatoria = frasesDeAmor[Math.floor(Math.random() * frasesDeAmor.length)];
+                textoRazon.innerText = fraseAleatoria;
+                textoRazon.style.opacity = '1';
+            }, 400);
+        }
+    </script>
+</body>
+</html>
